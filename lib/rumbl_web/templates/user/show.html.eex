@@ -1,6 +1,7 @@
 <h1>
 Showing User
 </h1>
-<p>
-  <%= render "user.html", user: @user %>
+<p style="display:flex;justify-content:space-between">
+<span><%= render "user.html", user: @user %></span>
+  <%= @user.username %>
 </p>

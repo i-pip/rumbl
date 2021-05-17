@@ -10,7 +10,27 @@
   </head>
   <body>
     <header>
-      <section class="container"></section>
+      <section class="container">
+        <nav role="navigation" style="width: 25%;">
+          <ul style="display: flex; justify-content: space-between">
+            <%= if @current_user do %>
+            <li>
+              <%= @current_user.username %>
+            </li>
+            <li>
+              <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %>
+            </li>
+          <% else %>
+              <li>
+                <%= link "Register", to: Routes.user_path(@conn, :new) %>
+              </li>
+              <li>
+                <%= link "Log in", to: Routes.session_path(@conn, :new) %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </section>
     </header>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

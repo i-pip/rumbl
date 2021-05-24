@@ -14,4 +14,8 @@ defmodule Rumbl.Multimedia.Category do
     |> cast(attrs, [:name])
     |> validate_required([:name])
   end
+
+  def create_category!(name) do
+    Repo.insert!(%Category{name: name}, on_conflict: :nothing)
+  end
 end

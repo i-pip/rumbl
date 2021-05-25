@@ -8,6 +8,7 @@ defmodule Rumbl.Multimedia do
   alias Rumbl.Accounts
 
   alias Rumbl.Multimedia.Video
+  alias Rumbl.Multimedia.Category
 
   @doc """
   Returns the list of videos.
@@ -118,5 +119,9 @@ defmodule Rumbl.Multimedia do
   """
   def change_video(%Video{} = video, attrs \\ %{}) do
     Video.changeset(video, attrs)
+  end
+
+  def create_category!(name) do
+    Repo.insert!(%Category{name: name}, on_conflict: :nothing)
   end
 end
